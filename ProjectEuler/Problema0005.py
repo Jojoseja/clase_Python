@@ -39,7 +39,7 @@ def decompose(number):
 def smallestPositiveNumber(number):
 
     primeList = []
-    for i in range(2, number):
+    for i in range(2, number+1):
         if checkPrime(i):
             primeList.append(i)
 
@@ -48,11 +48,13 @@ def smallestPositiveNumber(number):
     for p in primeList:
         primeDict[p] = 0
 
-    for i in range(2, number):
+    for i in range(2, number+1):
         newDict = decompose(i)
         for p in newDict:
             if newDict[p] >= primeDict[p]:
                 primeDict[p] = newDict[p]
+
+
 
     total_sum = 1
     for p in primeDict:
@@ -60,4 +62,4 @@ def smallestPositiveNumber(number):
 
     return total_sum
 
-print(f"{smallestPositiveNumber(20):,}")
+print(f"{smallestPositiveNumber():,}")
