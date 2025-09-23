@@ -62,4 +62,4 @@ def smallestPositiveNumber(number):
 
     return total_sum
 
-print(f"{smallestPositiveNumber():,}")
+print(f"{smallestPositiveNumber(50):,}")
