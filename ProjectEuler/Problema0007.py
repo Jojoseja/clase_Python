@@ -25,14 +25,15 @@ def is_prime(n):
 
 list = []
 
-counter = 2
+counter = 0
 
-lastDigit = 10001
+i = 1
 
-while len(list) < lastDigit:
-    if checkPrime(counter):
-        print(counter)
-        list.append(counter)
-    counter += 1
+#104743
+while counter != 10001:
+    i += 1
+    if is_prime(i):
+        counter += 1
 
-print(list[lastDigit-1])
+
+print(i)
