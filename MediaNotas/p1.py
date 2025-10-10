@@ -1,6 +1,7 @@
 import csv
 import random as rand
 import pandas as pd
+import numpy as np
 
 from MediaNotas.Alumno import Alumno
 
@@ -32,33 +33,45 @@ def escribirCSV():
 
 #escribirCSV()
 
-
+#modificar los valores de muestra
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', None)
-df = pd.read_csv('data.csv') # Read csv as a datafile
 
+df = pd.read_csv('data.csv') # Read csv as a DataFile
 
-non_grade_columns=["ID", "Nombre", "Apellidos"]
-grade_columns= [col for col in df.columns if col not in non_grade_columns]
+#df.head() # muestra los 5 primeros
+#df.head(10) # muestra los 10 primeros
+#df.tail() # muestra los 5 ultimos
 
-df['Average Score'] = df[grade_columns].mean(axis=1)
+#df.info() # Data types and memory usage
+#df.describe() # Muestra aun mas informacion
+#df.shape # Muestra el numero de filas y el numero de columnas
+#df.columns # Muestra el nombre de las columnas
+#df.index # Muestra el index (donde empieza, donde acaba y cada cuentos "pasos" cuenta)
 
-sorted_by_average_score = df.sort_values(by=['Average Score'], ascending=False).head(3)
-print(sorted_by_average_score)
+df["Nombre"] # Muestra la columna que se especifique como serie,
+df[["Apellidos"]] # Muestra la columna que se especifique como dataframe
 
+df.iloc[0] # muestra la primera fila (indice 0)
+df.iloc[0:6] # muestra del indice 0 al indice 6 (del 1 al 7)
 
-filtered_students = df[(df[grade_columns] > 60).all(axis=1)]
-filtered_students_sorted = filtered_students.sort_values(by=['Average Score'], ascending=False)
-#print(filtered_students_sorted)
+df.loc[1] #muestra el indice que se especifica
 
-#df['average_score'] = df[grade_columns].mean(axis=1)
+df[df['C++'] > 90].head(10) # mostrar los 10 primeros que tengan mas de 90 puntos en C++
+df[df["Java"] < 10].sort_values(by=['Java'], ascending=False).tail(10) # Mostrar los 10 ultimos que tengan menos de 10 puntos en java ordenados por los puntos que han sacado en java
 
-#df_sorted_2 = df.sort_values(by=['average_score'], ascending=False)
-#print(df_sorted_2)
+df.query("Java >= 95 and Python >= 95 and `C++`>= 95") # Muestra aquellos que tengan 95 o mas en Java, Python y C++
 
-#df_sorted = df.sort_values(by=['Mates'], ascending=False) # Sort by Mates grade
+columnas_no_media = ["ID", "Nombre", "Apellidos"]
+columnas_media = [col for col in df.columns if col not in columnas_no_media]
 
-# Standard Deviation
-# df_sorted['Mates'].std()
+#df['Average'] # agregar columna
+#df['Average'] = df[columnas_media].mean(axis=1) # axis = 1 indica la fila, axis = 0 indica la columna
 
+#df.mean()        # Mean of each column
+#df.sum()         # Sum of each column
+#df.min()         # Minimum value
+#df.max()         # Maximum value
+#df.std()         # Standard deviation
+#df.count()       # Count non-NA values
