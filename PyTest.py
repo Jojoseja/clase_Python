@@ -1,14 +1,12 @@
-import math
+class Ejemplo():
+    def __init__(self, nombre="Carlos", edad=7, modifier="algo"):
+        self.nombre = nombre
+        self.edad = edad
+        self.modifier = modifier
 
-hello = lambda a: a + 5
 
-print(hello(1))
 
-x = 1+2*3-4/pow(5, 6)
-print(x)
+a = Ejemplo(modifier="hola",edad=11)
 
-print(type(x))
-
-y = math.log(256, 2)
-
-print(y)
+print(a.nombre)
+print(f"{a.nombre}, {a.edad}, {a.modifier}")
